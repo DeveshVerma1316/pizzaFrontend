@@ -8,7 +8,9 @@ import IconArrowRight from "../Components/Icons/ArrowRight";
  import Enjoy from '../assets/Images/enjoy.png';
 import Layout from "../Layouts/Layout";
 
- function Home() {   
+ function Home() {
+ 
+    
      return (
         <Layout>
          <div>
