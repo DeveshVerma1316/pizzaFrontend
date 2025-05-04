@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
  
  import { Link, useNavigate } from 'react-router-dom';
  import { logout } from '../Redux/Slices/AuthSlice';
+ import { useEffect } from 'react';
+ import { getCartDetails } from '../Redux/Slices/CartSlice';
  
  // eslint-disable-next-line react/prop-types
  function Layout({ children }) {
@@ -22,6 +24,19 @@ import { useDispatch, useSelector } from 'react-redux';
          dispatch(logout());
  
      }
+     async function fetchCartDetails() {
+        const res = await dispatch(getCartDetails());
+        if(res?.payload?.isUnauthorized) {
+            dispatch(logout());
+        }
+    }
+
+    useEffect(() => {
+        console.log(typeof(isLoggedIn))
+        if(isLoggedIn) {
+            fetchCartDetails();
+        }
+    }, []);
  
      return (
          <div>
